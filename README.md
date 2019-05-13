@@ -4,6 +4,7 @@
 
 Custom hook to combine all useReducer hooks for one global state container with one dispatch function. Use at top-level and pass dispatch function (and state) down via React's Context API with Provider and Consumer/useContext.
 
+* [Example Application](https://github.com/the-road-to-learn-react/react-with-redux-philosophy)
 * ["How to implement it"-tutorial](https://www.robinwieruch.de/redux-with-react-hooks/).
 * Philosophy [[1]](https://www.robinwieruch.de/react-state-usereducer-usestate-usecontext/)[[2]](https://www.robinwieruch.de/redux-with-react-hooks/)
 
