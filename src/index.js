@@ -1,4 +1,4 @@
-const useCombinedReducer = combinedReducers => {
+const useCombinedReducers = combinedReducers => {
   // Global State
   const state = Object.keys(combinedReducers).reduce(
     (acc, key) => ({ ...acc, [key]: combinedReducers[key][0] }),
@@ -14,4 +14,4 @@ const useCombinedReducer = combinedReducers => {
   return [state, dispatch];
 };
 
-export default useCombinedReducer;
+export default useCombinedReducers;
