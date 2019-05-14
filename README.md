@@ -10,11 +10,13 @@ Custom hook to combine all useReducer hooks for one global state container with 
 
 ## Installation
 
-`npm install use-combined-reducers`
+```bash
+$ npm install use-combined-reducers
+```
 
 ## Usage
 
-```
+```js
 import useCombinedReducers from 'use-combined-reducers';
 
 const App = () => {
@@ -25,7 +27,7 @@ const App = () => {
 
   const { myTodos, myOtherStuff } = state;
 
-  ...
+  // ...
 }
 ```
 
