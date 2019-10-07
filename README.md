@@ -12,6 +12,8 @@ Custom hook to combine all useReducer hooks for one global state container with 
 
 `npm install use-combined-reducers`
 
+Optional TS support: `npm install @types/use-combined-reducers —save-dev`
+
 ## Usage
 
 Create a global dispatch function and state object by initializing multiple `useReducer` hooks in `useCombinedReducers`:
