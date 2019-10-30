@@ -31,6 +31,7 @@ describe('useCombinedReducer', () => {
 
 describe('dispatch should not change reference', () => {
   const reactDispatch = () => {};
+  const otherDispatch = () => {};
 
   it('should not create a new dispatch reference if not needed', () => {
     const [, dispatch1] = useCombinedReducers({
@@ -46,7 +47,7 @@ describe('dispatch should not change reference', () => {
       a: ['1', reactDispatch],
     });
     const [, dispatch2] = useCombinedReducers({
-      a: ['1', x => x],
+      a: ['1', otherDispatch],
     });
     expect(dispatch1).to.not.be.equal(dispatch2);
   });
