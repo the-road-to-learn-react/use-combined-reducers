@@ -28,3 +28,26 @@ describe('useCombinedReducer', () => {
     expect(bCallback.calledOnce).to.eql(true);
   });
 });
+
+describe('dispatch should not change reference', () => {
+  const reactDispatch = () => {};
+
+  it('should not create a new dispatch reference if not needed', () => {
+    const [, dispatch1] = useCombinedReducers({
+      a: ['1', reactDispatch],
+    });
+    const [, dispatch2] = useCombinedReducers({
+      a: ['1', reactDispatch],
+    });
+    expect(dispatch1).to.be.equal(dispatch2);
+  });
+  it('should create a new dispatch reference if changed', () => {
+    const [, dispatch1] = useCombinedReducers({
+      a: ['1', reactDispatch],
+    });
+    const [, dispatch2] = useCombinedReducers({
+      a: ['1', x => x],
+    });
+    expect(dispatch1).to.not.be.equal(dispatch2);
+  });
+});
