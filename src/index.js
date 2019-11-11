@@ -33,13 +33,15 @@ function memoize(fn) {
 const createDispatch = memoize((...dispatchers) => action =>
   dispatchers.forEach(fn => fn(action)),
 );
-
-const useCombinedReducers = combinedReducers => {
-  // Global State
-  const state = Object.keys(combinedReducers).reduce(
+const createState = memoize(combinedReducers =>
+  Object.keys(combinedReducers).reduce(
     (acc, key) => ({ ...acc, [key]: combinedReducers[key][0] }),
     {},
-  );
+  ),
+);
+const useCombinedReducers = combinedReducers => {
+  // Global State
+  const state = createState(combinedReducers);
 
   const dispatchers = Object.values(combinedReducers).map(
     ([, dispatch]) => dispatch,
