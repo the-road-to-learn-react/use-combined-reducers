@@ -28,3 +28,49 @@ describe('useCombinedReducer', () => {
     expect(bCallback.calledOnce).to.eql(true);
   });
 });
+
+describe('dispatch should not change reference', () => {
+  const reactDispatch = () => {};
+  const otherDispatch = () => {};
+
+  it('should not create a new dispatch reference if not needed', () => {
+    const [, dispatch1] = useCombinedReducers({
+      a: ['1', reactDispatch],
+    });
+    const [, dispatch2] = useCombinedReducers({
+      a: ['1', reactDispatch],
+    });
+    expect(dispatch1).to.be.equal(dispatch2);
+  });
+  it('should create a new dispatch reference if changed', () => {
+    const [, dispatch1] = useCombinedReducers({
+      a: ['1', reactDispatch],
+    });
+    const [, dispatch2] = useCombinedReducers({
+      a: ['1', otherDispatch],
+    });
+    expect(dispatch1).to.not.be.equal(dispatch2);
+  });
+});
+
+describe('state should not change reference', () => {
+  const reactDispatch = () => {};
+  const otherDispatch = () => {};
+  const combined = {
+    a: ['1', reactDispatch],
+  };
+  it('should not create a new dispatch reference if not needed', () => {
+    const [state1] = useCombinedReducers(combined);
+    const [state2] = useCombinedReducers(combined);
+    expect(state1).to.be.equal(state2);
+  });
+  // it('should create a new dispatch reference if changed', () => {
+  //   const [, dispatch1] = useCombinedReducers({
+  //     a: ['1', reactDispatch],
+  //   });
+  //   const [, dispatch2] = useCombinedReducers({
+  //     a: ['1', otherDispatch],
+  //   });
+  //   expect(dispatch1).to.not.be.equal(dispatch2);
+  // });
+});
